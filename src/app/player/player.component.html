@@ -1,0 +1,111 @@
+<div class="main">
+  <nav>
+    <div class="nav-wrapper navBar">
+      <a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>    
+      <a class="brand-logo left">Life</a>
+      <a class="right" style="margin-right: 10px;" (click)="createGameBox=true"><i class="material-icons">add</i></a>
+    </div>
+  </nav>
+
+  <ul id="slide-out" class="side-nav">
+      <li><h5>
+        Connected players
+      </h5></li>
+      <ul  class="collection">
+          <li class="collection-item" *ngFor="let player of AllPlayers">{{player.name}}</li>
+      </ul>
+  </ul>
+
+  <!-- <div class="GameDetails">
+    <div class="row">
+      <div class="col s4 m4">
+        <a>{{Game.name}}</a>
+      </div>
+      <div class="col s4 m4">
+        <a>{{Game.unique_id}}</a>
+      </div>
+      <div class="col s4 m4">
+        <a style="color: #fff;" (click)="createGameBox=true"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row" *ngIf="createGameBox">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Join Game</span>
+          <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="first_name" [ngModelOptions]="{standalone: true}" [(ngModel)]="name" name="name" type="text" class="validate">
+                    <label for="first_name">Name</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input id="last_name" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="unique_id" class="validate">
+                    <label for="last_name">Unique ID</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="card-action">
+          <a (click)="joinGame()">Join</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="Game">
+    <div class="name">
+      <h5>{{Game.name}}</h5>
+    </div>
+    <div class="details">
+        <ul class="collection">
+          <li class="collection-item">
+            Salary: {{Game.salary}}
+          </li>
+          <li class="collection-item">
+              Holdings: {{Game.holdings}}
+            </li>
+            <li class="collection-item">
+                Children: {{Game.children}}
+              </li>
+              <li class="collection-item">
+                  Promisary Note: {{Game.promisary_note}}
+                </li>
+            
+        </ul>
+        <ul class="collection with-header">
+          <li class="collection-header"><h5>Cards</h5></li>
+            <li class="collection-item">
+              Share Wealth : {{Game.share_card}} 
+              <a (click)="openModal('bonuscards', 'share')" class="secondary-content"><i class="material-icons">send</i></a>
+            </li>
+            <li class="collection-item">
+              Excemption Card:   {{Game.exemption_card}} 
+                <a (click)="openModal('bonuscards', 'exemption')" class="secondary-content"><i class="material-icons">send</i></a>
+              </li>
+          </ul>
+          <ul class="collection with-header" *ngIf="Game.insurance.length>0">
+              <li class="collection-header"><h5>Insurance</h5></li>
+                <li class="collection-item" *ngFor="let insurance of Game.insurance">
+                  {{insurance}}
+                </li>
+            </ul>
+    </div>
+  </div>
+</div>
+
+<div id="bonuscards" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Select Player</h4>
+      <div class="row">
+        <ul  class="collection">
+          <li class="collection-item" *ngFor="let player of AllPlayers" (click)="shareExemptCard(player)">{{player.name}}</li>
+        </ul>
+      </div>
+    </div>
+    
+</div>

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+.main {
+    font-family: 'Roboto', sans-serif;
+    .navBar {
+        .brand-logo {
+            font-size: 18px; 
+            padding-left: 10px;  
+            font-family: 'Ubuntu', sans-serif;                  
+        }
+        background-color: #3F51B5;
+    }
+}
+
+.playersCard {
+    width: 100%;
+    height: auto;
+}
+
+.BankerOptions {
+    width: 20%;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    margin-top: 0px;
+    position: fixed;
+    z-index: 999;
+    background-color: #fff;
+}
